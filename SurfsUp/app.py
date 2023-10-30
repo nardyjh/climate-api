@@ -47,7 +47,7 @@ def homepage():
         f"/api/v1.0/&lt;start&gt; (replace &lt;start&gt; with a date)<br/>"
         f"/api/v1.0/&lt;start&gt;/&lt;end&gt; (replace &lt;start&gt; and &lt;end&gt; with dates)"
     )
-
+session.close() 
 
 @app.route("/api/v1.0/precipitation")
 def precipitation():
@@ -67,7 +67,7 @@ def precipitation():
         
     #Return JSON representation of data
     return jsonify(precipitation_data)
-
+session.close() 
 
 @app.route("/api/v1.0/stations")
 def stations():
@@ -79,7 +79,7 @@ def stations():
 
     #Return JSON
     return jsonify(station_data)
-
+session.close() 
 
 @app.route("/api/v1.0/tobs")
 def tobs():
@@ -109,7 +109,7 @@ def tobs():
 
     #Return JSON
     return jsonify(tobs_data)
-
+session.close()
 
 @app.route("/api/v1.0/<start>")
 def start_date(start):
@@ -132,6 +132,7 @@ def start_date(start):
 
     #Return JSON
     return jsonify(stats_data)
+session.close()
 
 @app.route("/api/v1.0/<start>/<end>")
 def start_end_date(start, end):
@@ -155,4 +156,7 @@ def start_end_date(start, end):
 
     #Return JSON
     return jsonify(stats_data)
+session.close() 
 
+if __name__ == '__main__':
+    app.run() 
